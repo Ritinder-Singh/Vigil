@@ -1,0 +1,52 @@
+:root {
+  /* ── Color: cool e-ink grays ── */
+  --color-bg: #E9EAEC;          /* page background — cool light gray */
+  --color-surface: #F2F3F4;     /* card/panel surface, slightly lighter */
+  --color-surface-sunken: #DEE0E2; /* recessed areas, table headers */
+
+  --color-text: #2B2D31;        /* primary text — soft charcoal, never pure black */
+  --color-text-secondary: #5C6066;
+  --color-text-muted: #9A9EA3;
+
+  --color-border: #C7C9CC;      /* hairline borders */
+  --color-border-strong: #A8ABAF;
+
+  --color-accent: #5B6F7E;      /* desaturated slate-blue — "live" data only */
+  --color-accent-soft: #DDE3E7;
+
+  /* Status — desaturated, e-ink-plausible */
+  --color-ok: #5C6066;
+  --color-warn: #8A7355;        /* muted amber-brown, not bright yellow */
+  --color-critical: #8A5C5C;    /* muted brick-red */
+
+  /* ── Typography ── */
+  --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+
+  --text-xs: 0.6875rem;   /* 11px — labels, eyebrows */
+  --text-sm: 0.8125rem;   /* 13px — body */
+  --text-base: 0.9375rem; /* 15px */
+  --text-lg: 1.25rem;     /* 20px — section values */
+  --text-xl: 2.25rem;     /* 36px — hero numbers */
+
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.12em;
+
+  /* ── Spacing scale ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* ── Layout ── */
+  --radius: 0px;             /* no rounded corners */
+  --border-width: 1px;
+
+  /* Dither block characters, fixed export for components */
+  --dither-empty: '░';
+  --dither-half: '▒';
+  --dither-full: '▓';
+}

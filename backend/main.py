@@ -3,6 +3,7 @@ import json
 import os
 from fastapi import FastAPI, Response, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from dotenv import load_dotenv
 
 from models import PublicMetrics, PrivateMetrics
@@ -47,7 +48,7 @@ def logout(response: Response):
     return {"ok": True}
 
 
-@app.post("/auth/me")
+@app.get("/auth/me")
 def me(payload=Depends(require_auth)):
     return {"user": payload.get("sub")}
 
