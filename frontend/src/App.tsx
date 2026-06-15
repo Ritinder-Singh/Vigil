@@ -3,9 +3,14 @@ import { useMetricsStream } from './hooks/useMetricsStream';
 import { MetricCell } from './components/MetricCell';
 import { formatUptime, networkPercent } from './utils/format';
 import { HeaderStatus } from './components/HeaderStatus';
+import { useAuth } from './context/AuthContext';
+import { usePrivateMetricsStream } from './hooks/usePrivateMetricsStream';
+import { ProcessTable } from './components/ProcessTable';
 
 function App() {
+  const { isAuthenticated } = useAuth();
   const { metrics, connected } = useMetricsStream();
+  const { metrics: privateMetrics } = usePrivateMetricsStream(isAuthenticated);
 
   if (!metrics) {
     return (
@@ -69,6 +74,14 @@ function App() {
           </div>
         </div>
       </div>
+      {isAuthenticated && privateMetrics && (
+        <div className="section">
+          <div className="section__header">Processes</div>
+          <div className="section__body" style={{ padding: 0 }}>
+            <ProcessTable processes={privateMetrics.processes} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
