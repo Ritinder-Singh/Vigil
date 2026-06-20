@@ -9,8 +9,11 @@ interface DitherBarProps {
 
 export function DitherBar({ value, segments = 28 }: DitherBarProps) {
   const clamped = Math.max(0, Math.min(100, value));
-  const filledCount = Math.round((clamped / 100) * segments);
+  let filledCount = Math.round((clamped / 100) * segments);
+  // Ensure any nonzero value shows at least one filled segment
+  if (clamped > 0 && filledCount === 0) filledCount = 1;
   const emptyCount = segments - filledCount;
+
 
 
   let level: 'normal' | 'warn' | 'critical' = 'normal';
