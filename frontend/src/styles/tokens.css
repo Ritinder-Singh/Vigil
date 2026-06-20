@@ -1,38 +1,38 @@
 :root {
-  /* ── Color: cool e-ink grays ── */
-  --color-bg: #E9EAEC;          /* page background — cool light gray */
-  --color-surface: #F2F3F4;     /* card/panel surface, slightly lighter */
-  --color-surface-sunken: #DEE0E2; /* recessed areas, table headers */
+  /* ── Color: cool e-ink grays (light) ── */
+  --color-bg: #E9EAEC;
+  --color-surface: #F2F3F4;
+  --color-surface-sunken: #DEE0E2;
 
-  --color-text: #2B2D31;        /* primary text — soft charcoal, never pure black */
+  --color-text: #2B2D31;
   --color-text-secondary: #5C6066;
   --color-text-muted: #9A9EA3;
 
-  --color-border: #C7C9CC;      /* hairline borders */
+  --color-border: #C7C9CC;
   --color-border-strong: #A8ABAF;
 
-  --color-accent: #5B6F7E;      /* desaturated slate-blue — "live" data only */
+  --color-accent: #5B6F7E;
   --color-accent-soft: #DDE3E7;
 
-  /* Status — desaturated, e-ink-plausible */
   --color-ok: #5C6066;
-  --color-warn: #8A7355;        /* muted amber-brown, not bright yellow */
-  --color-critical: #8A5C5C;    /* muted brick-red */
+  --color-warn: #8A7355;
+  --color-critical: #8A5C5C;
 
   /* ── Typography ── */
   --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
 
-  --text-xs: 0.6875rem;   /* 11px — labels, eyebrows */
-  --text-sm: 0.8125rem;   /* 13px — body */
-  --text-base: 0.9375rem; /* 15px */
-  --text-lg: 1.25rem;     /* 20px — section values */
-  --text-xl: 2.25rem;     /* 36px — hero numbers */
+  /* ── Typography — bumped for readability ── */
+  --text-xs: 0.8125rem;   /* 13px — was 11px, labels/eyebrows */
+  --text-sm: 0.9375rem;   /* 15px — was 13px, body */
+  --text-base: 1.0625rem; /* 17px — was 15px */
+  --text-lg: 1.5rem;      /* 24px — was 20px, section values */
+  --text-xl: 2.75rem;     /* 44px — was 36px, hero numbers */
+
 
   --tracking-wide: 0.08em;
   --tracking-wider: 0.12em;
 
-  /* ── Spacing scale ── */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -41,12 +41,32 @@
   --space-6: 32px;
   --space-7: 48px;
 
-  /* ── Layout ── */
-  --radius: 0px;             /* no rounded corners */
+  --radius: 0px;
   --border-width: 1px;
+}
 
-  /* Dither block characters, fixed export for components */
-  --dither-empty: '░';
-  --dither-half: '▒';
-  --dither-full: '▓';
+/* ── Dark variant: charcoal e-ink, not OLED black ── */
+[data-theme="dark"] {
+  --color-bg: #1C1E21;
+  --color-surface: #232529;
+  --color-surface-sunken: #2C2F33;
+
+  --color-text: #D5D7DA;
+  --color-text-secondary: #9A9EA3;
+  --color-text-muted: #65686D;
+
+  --color-border: #404349;
+  --color-border-strong: #4D5158;
+
+  --color-accent: #7C92A3;
+  --color-accent-soft: #2E3A42;
+
+  --color-ok: #9A9EA3;
+  --color-warn: #B8966B;
+  --color-critical: #B87A7A;
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
