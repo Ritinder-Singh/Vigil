@@ -1,7 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import { LoginForm } from "./LoginForm";
 
-
 interface HeaderStatusProps {
   connected: boolean;
 }
@@ -14,9 +13,9 @@ export function HeaderStatus({ connected }: HeaderStatusProps) {
   if (isAuthenticated) {
     return (
       <div className="header__status">
-        <span className={`status-dot ${connected ? 'status-dot--live' : ''}`} />
+        <span className={`status-dot ${connected ? "status-dot--live" : ""}`} />
         AUTHENTICATED
-        <button className="login-form__submit" onClick={logout}>
+        <button className="header__logout" onClick={logout}>
           LOGOUT
         </button>
       </div>

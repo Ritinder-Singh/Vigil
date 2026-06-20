@@ -1,11 +1,16 @@
-import './styles/layout.css';
-import { useMetricsStream } from './hooks/useMetricsStream';
-import { MetricCell } from './components/MetricCell';
-import { formatUptime, networkPercent } from './utils/format';
-import { HeaderStatus } from './components/HeaderStatus';
-import { useAuth } from './context/AuthContext';
-import { usePrivateMetricsStream } from './hooks/usePrivateMetricsStream';
-import { ProcessTable } from './components/ProcessTable';
+import "./styles/layout.css";
+import { useMetricsStream } from "./hooks/useMetricsStream";
+import { MetricCell } from "./components/MetricCell";
+import { formatUptime, networkPercent } from "./utils/format";
+import { HeaderStatus } from "./components/HeaderStatus";
+import { useAuth } from "./context/AuthContext";
+import { usePrivateMetricsStream } from "./hooks/usePrivateMetricsStream";
+import { ProcessTable } from "./components/ProcessTable";
+import { LoadAverage } from "./components/LoadAverage";
+import { CoreBreakdown } from "./components/CoreBreakdown";
+import { MountsTable } from "./components/MountsTable";
+import { NetworkInterfaces } from "./components/NetworkInterfaces";
+import { ThemeToggle } from "./components/ThemeToggle";
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -31,7 +36,16 @@ function App() {
             vps-prod-01.chandigarh — up {formatUptime(metrics.uptime_seconds)}
           </div>
         </div>
-        <HeaderStatus connected={connected} />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--space-3)",
+          }}
+        >
+          <ThemeToggle />
+          <HeaderStatus connected={connected} />
+        </div>
       </header>
 
       <div className="metric-grid">
@@ -67,7 +81,9 @@ function App() {
           <div className="services-row">
             {metrics.services.map((svc) => (
               <span className="service-item" key={svc.name}>
-                <span className={`status-dot ${svc.up ? 'status-dot--live' : ''}`} />
+                <span
+                  className={`status-dot ${svc.up ? "status-dot--live" : ""}`}
+                />
                 {svc.name}
               </span>
             ))}
@@ -75,12 +91,42 @@ function App() {
         </div>
       </div>
       {isAuthenticated && privateMetrics && (
-        <div className="section">
-          <div className="section__header">Processes</div>
-          <div className="section__body" style={{ padding: 0 }}>
-            <ProcessTable processes={privateMetrics.processes} />
+        <>
+          <div className="section">
+            <div className="section__header">Load Average</div>
+            <div className="section__body">
+              <LoadAverage loadAvg={privateMetrics.load_avg} />
+            </div>
           </div>
-        </div>
+
+          <div className="section">
+            <div className="section__header">CPU per Core</div>
+            <div className="section__body">
+              <CoreBreakdown cores={privateMetrics.cpu_per_core} />
+            </div>
+          </div>
+
+          <div className="section">
+            <div className="section__header">Disk Mounts</div>
+            <div className="section__body" style={{ padding: 0 }}>
+              <MountsTable mounts={privateMetrics.mounts} />
+            </div>
+          </div>
+
+          <div className="section">
+            <div className="section__header">Network Interfaces</div>
+            <div className="section__body" style={{ padding: 0 }}>
+              <NetworkInterfaces interfaces={privateMetrics.interfaces} />
+            </div>
+          </div>
+
+          <div className="section">
+            <div className="section__header">Processes</div>
+            <div className="section__body" style={{ padding: 0 }}>
+              <ProcessTable processes={privateMetrics.processes} />
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
