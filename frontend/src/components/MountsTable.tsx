@@ -20,15 +20,13 @@ export function MountsTable({ mounts }: MountsTableProps) {
       <tbody>
         {mounts.map((m) => (
           <tr key={m.mountpoint}>
-            <td className="data-table__muted">{m.device}</td>
-            <td>{m.mountpoint}</td>
-            <td className="data-table__num">{m.used_gb} GB</td>
-            <td className="data-table__muted">{m.total_gb} GB</td>
-            <td>
+            <td data-label="Device" className="data-table__muted">{m.device}</td>
+            <td data-label="Mount">{m.mountpoint}</td>
+            <td data-label="Used" className="data-table__num">{m.used_gb} GB</td>
+            <td data-label="Total" className="data-table__muted">{m.total_gb} GB</td>
+            <td data-label="Usage">
               <div className="data-table__metric">
-                <span className="data-table__num">
-                  {m.percent.toFixed(0)}%
-                </span>
+                <span className="data-table__num">{m.percent.toFixed(0)}%</span>
                 <DitherBar value={m.percent} segments={8} />
               </div>
             </td>
